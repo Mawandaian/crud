@@ -1,0 +1,22 @@
+#full_form{
+    width: 400px;
+}
+
+#post_title{
+    width: 350px;
+    margin-top:6px;
+    margin-bottom:6px;
+}
+
+#post_body{
+    width: 360px;
+    height: 100px;
+    margin-top:6px;
+    margin-bottom:6px;
+}
+
+#add_post{
+    width: 370px;
+    margin-top:6px;
+    margin-bottom:6px;
+}
