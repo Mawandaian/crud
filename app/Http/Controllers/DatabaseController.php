@@ -4,31 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Post;
 
 class DatabaseController extends Controller
 {
     public function loadPage(){
-        $data = DB::select("select * from posts");
-        
-        return view('home')->with('database_data', $data);
+        //Selecting all data from database
+        $post_data = Post::get_all_posts();  
+        return view('home')->with('database_data', $post_data);
     }
 
     public function saveData(Request $request){
-        DB::insert("insert into posts (post_title, post_body) values(?,?)",[$request->input('post_title'), $request->input('post_body')]);
+        //Insert posts into the posts table
+        Post::store_new_post($request);
         
         //Load home page after that
         return $this->loadPage();
     }
 
     public function updateData(Request $request){
-        DB::update("update posts set post_title=?, post_body=? where post_id=?", [$request->input('post_title'), $request->input('post_body'), $request->input('id')]);
-        
+        //Updating the posts table
+        Post::update_old_post($request);
+
         //Load home page after that
         return $this->loadPage();
     }
 
     public function deleteData(Request $request){
-        DB::delete("delete from posts where post_id=?",[$request->input('id')]);
+        //Deleting posts from Posts table
+        Post::delete_post($request);
 
         //Load home page after that
         return $this->loadPage();
