@@ -29,19 +29,18 @@
             </script>
 
             @foreach ($database_data as $data)
-
                 <div class="card">
                     <div class="card-header">
                         <b class="heading">{{ $data->post_title }} </b>
                         <div class="dropdown">
-                            <button onclick="dropLinks({{$data->post_id}})" class="dropbtn">Options</button>
-                            <div id="myDropdown{{$data->post_id}}" class="dropdown-content">
-                                <a onclick='updateForm("{{$data->post_id}}")' href="#">Update</a>
-                                <a href="{{URL::to('/delete_post')}}?id={{$data->post_id}}">Delete</a>
+                            <button onclick="dropLinks({{$data->id}})" class="dropbtn">Options</button>
+                            <div id="myDropdown{{$data->id}}" class="dropdown-content">
+                                <a onclick='updateForm("{{$data->id}}")' href="#">Update</a>
+                                <a href="{{URL::to('/delete_post')}}?id={{$data->id}}">Delete</a>
                             </div>
                         </div>
                     </div>
-                    <b class="timestamp">Posted: {{ $data->timestamps }}</b>
+                    <b class="timestamp">Posted: {{ $data['timestamps'] }}</b>
 
                     <div class="card-body">
                         {{ $data->post_body }}
@@ -49,9 +48,9 @@
                 </div>
 
                 <script>
-                    post['title{{$data->post_id}}'] = '{{$data->post_title}}';
-                    post['body{{$data->post_id}}'] = '{{$data->post_body}}';
-                    post['url{{$data->post_id}}'] = '{{URL::to("/update_post")}}';
+                    post['title{{$data->id}}'] = '{{$data->post_title}}';
+                    post['body{{$data->id}}'] = '{{$data->post_body}}';
+                    post['url{{$data->id}}'] = '{{URL::to("/update_post")}}';
                 </script>
                 <br />
                 <br />
